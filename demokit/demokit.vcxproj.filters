@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{51ec7d79-7e53-42a5-a442-6922fad6f46c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework">
+      <UniqueIdentifier>{4e718f80-75da-48ab-b985-e66bfe537179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tasks">
+      <UniqueIdentifier>{7861efda-231e-4713-956f-5b97418ddb8c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demokit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\dk_socket_client.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\dk_socket_server.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\dk_ts_helper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\FuncPack.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\hmcmn_event.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\MemFuncPack.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dk_block_cache.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dk_ring_cache.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\dk_root.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DKRunOnlyOneInstance.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DKTaskEngine.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="tasks\dk_task_fetch.h">
+      <Filter>tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="tasks\dk_task_send.h">
+      <Filter>tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\dk_auddrv_proxy.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demokit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\dk_socket_client.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\dk_socket_server.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\dk_ts_helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dk_block_cache.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dk_ring_cache.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\dk_root.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DKRunOnlyOneInstance.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DKTaskEngine.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="tasks\dk_task_fetch.cpp">
+      <Filter>tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="tasks\dk_task_send.cpp">
+      <Filter>tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\dk_auddrv_proxy.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="demokit.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="demokit.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

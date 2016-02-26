@@ -1,0 +1,24 @@
+
+####By Fanxiushu 2011-10-20
+
+TARGETNAME=..\..\wav_mixer
+TARGETTYPE=DRIVER
+
+TARGETLIBS= \
+        $(DDK_LIB_PATH)\portcls.lib\
+        $(DDK_LIB_PATH)\stdunk.lib
+
+INCLUDES= \
+        $(DDK_INC_PATH); \
+        ..
+
+### MSC_WARNING_LEVEL=-W4 -WX
+
+C_DEFINES= $(C_DEFINES) -D_WIN32 -DUNICODE -D_UNICODE -DPC_IMPLEMENTATION
+C_DEFINES= $(C_DEFINES) -DDEBUG_LEVEL=DEBUGLVL_TERSE
+
+SOURCES = \
+	main.cpp common.cpp topo.cpp wave.cpp stream.cpp data_trans.cpp llx_audio_data_cache.cpp llx_audfet_cdo.cpp showbuffer.cpp llx_block_data_cache.cpp llx_ring_cache.cpp wav_mixer.rc
+
+
+

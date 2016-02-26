@@ -1,0 +1,127 @@
+
+;
+; Copyright (c) 2014-2015  corporation all rights reserved
+;
+
+;======================================================
+; Version
+;======================================================
+[Version]
+Signature="$CHICAGO$"
+Class=MEDIA
+Provider=%Vender%
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+DriverVer = 05/01/2015, 1.1.2.0581
+CatalogFile=laudio.cat
+
+;======================================================
+; Strings
+;======================================================
+[Strings]
+Vender="rom wang"
+Product="laudio"
+ProductDesc="laudio Virtual Audio"
+SourceDisksNames="laudio Disk"
+HWID = Root\laudio
+
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_AUDIO="{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_RENDER="{65E8773E-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+
+KSNAME_Wave="Wave"
+KSNAME_Topology="Topology"
+
+MediaCategories="SYSTEM\CurrentControlSet\Control\MediaCategories"
+
+Simple.NameGuid="{853157B5-909D-425c-9153-37325753FFC8}"
+Simple.Name="laudio Virtual Audio"
+
+;======================================================
+; Manufacturer
+;======================================================
+[Manufacturer]
+%Vender%=Model,NTX86,NTAMD64,NTIA64
+
+;======================================================
+; Model
+;======================================================
+[Model.NTX86]
+%ProductDesc%=DDInstall,%HWID%
+
+[Model.NTAMD64]
+%ProductDesc%=DDInstall,%HWID%
+
+[Model.NTIA64]
+%ProductDesc%=DDInstall,%HWID%
+
+;======================================================
+; DDInstall
+;======================================================
+[DDInstall.NT]
+Include=ks.inf,wdmaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration
+CopyFiles=MyCopyFiles
+AddReg=MyAddReg
+
+[MyCopyFiles]
+laudio.sys
+
+[MyAddReg]
+HKR,,AssociatedFilters,,"wdmaud,swmidi,redbook"
+HKR,,Driver,,laudio.sys
+
+HKR,Drivers,SubClasses,,"wave,mixer"
+
+HKR,Drivers\wave\wdmaud.drv,Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+
+HKR,Drivers\wave\wdmaud.drv,Description,,%ProductDesc%
+HKR,Drivers\mixer\wdmaud.drv,Description,,%ProductDesc%
+
+HKLM,%MediaCategories%\%Simple.NameGuid%,Name,,%Simple.Name%
+
+[DDInstall.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_RENDER%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_CAPTURE%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Topology%,ISVA.I.Topo
+
+[ISVA.I.Wave]
+AddReg=ISVA.I.Wave.AddReg
+[ISVA.I.Wave.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%ProductDesc%
+
+[ISVA.I.Topo]
+AddReg=ISVA.I.Topo.AddReg
+[ISVA.I.Topo.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%ProductDesc%
+
+[DDInstall.NT.Services]
+AddService=%Product%,0x00000002,Service_Install
+
+[Service_Install]
+DisplayName=%ProductDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\laudio.sys
+
+
+; sourcefiles and destinationdirs
+[SourceDisksNames]
+1=%SourceDisksNames%
+
+[SourceDisksFiles.X86]
+laudio.sys=1,x86
+[SourceDisksFiles.AMD64]
+laudio.sys=1,amd64
+[SourceDisksFiles.IA64]
+laudio.sys=1,ia64
+
+[DestinationDirs]
+MyCopyFiles=12
+
+

@@ -1,0 +1,144 @@
+[Version]
+Signature="$CHICAGO$"
+Class=MEDIA
+Provider=%IS%
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+DriverVer = 11/04/2011, 1.0.0.4
+CatalogFile=wav_mixer.cat
+
+[SourceDisksNames]
+222="ISpeakVA Driver Disk","",222
+
+[SourceDisksFiles]
+wav_mixer.sys=222
+
+;;This syntax is only recognized on Windows XP and above- it is needed to install 64-bit drivers on
+;;Windows Server 2003 Service Pack 1 and above.
+
+[Manufacturer]
+%MfgName%=ISDS,NTAMD64,NTIA64
+
+;;  For Windows Server 2003 Service Pack 1 and above, a 64-bit OS will not install a driver
+;;  unless the Manufacturer and Models Sections explicitly show it is a driver for that platform
+;;  But the individual model section decorations (or lack thereof) work as they always have.
+;;  All of the model sections referred to are undecorated or NT-decorated, hence work on all platforms
+
+[ISDS]
+%ISpeakVA.DeviceDesc%=ISpeakVA,*ISpeakVA
+
+;; This section enables installing on x64 systems
+
+[ISDS.NTAMD64]
+%ISpeakVA.DeviceDesc%=ISpeakVA,*ISpeakVA
+
+;;  This section enables installing on Itanium systems
+
+[ISDS.NTIA64]
+%ISpeakVA.DeviceDesc%=ISpeakVA,*ISpeakVA
+
+[DestinationDirs]
+ISpeakVA.CopyList=10,system32\drivers
+
+
+;======================================================
+; ISpeakVA
+;======================================================
+[ISpeakVA]
+AlsoInstall=ks.registration(ks.inf),wdmaudio.registration(wdmaudio.inf)
+CopyFiles=ISpeakVA.CopyList
+AddReg=ISpeakVA.AddReg
+
+[ISpeakVA.CopyList]
+wav_mixer.sys
+
+[ISpeakVA.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_RENDER%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_CAPTURE%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Topology%,ISVA.I.Topo
+
+[ISpeakVA.AddReg]
+HKR,,AssociatedFilters,,"wdmaud,swmidi,redbook"
+HKR,,Driver,,wav_mixer.sys
+
+HKR,Drivers,SubClasses,,"wave,mixer"
+
+HKR,Drivers\wave\wdmaud.drv,Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+
+HKR,Drivers\wave\wdmaud.drv,Description,,%ISpeakVA.DeviceDesc%
+HKR,Drivers\mixer\wdmaud.drv,Description,,%ISpeakVA.DeviceDesc%
+
+HKLM,%MediaCategories%\%Simple.NameGuid%,Name,,%Simple.Name%
+
+
+
+;======================================================
+; COMMON
+;======================================================
+[ISVA.I.Wave]
+AddReg=ISVA.I.Wave.AddReg
+[ISVA.I.Wave.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%ISVA.Wave.szPname%
+
+[ISVA.I.Topo]
+AddReg=ISVA.I.Topo.AddReg
+[ISVA.I.Topo.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%ISVA.Topo.szPname%
+
+;======================================================
+; ISVA
+;======================================================
+[ISpeakVA.NT]
+Include=ks.inf,wdmaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration
+CopyFiles=ISpeakVA.CopyList
+AddReg=ISpeakVA.AddReg
+
+[ISpeakVA.NT.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_RENDER%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_CAPTURE%,%KSNAME_Wave%,ISVA.I.Wave
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Topology%,ISVA.I.Topo
+
+[ISpeakVA.NT.Services]
+AddService=ISpeakVA,0x00000002,ISpeakVA_Service_Inst
+
+[ISpeakVA_Service_Inst]
+DisplayName=%ISpeakVA.SvcDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\wav_mixer.sys
+
+
+;======================================================
+; COMMON
+;======================================================
+[Strings]
+IS="ISpeak"
+MfgName="ISpeak Virtual Audio"
+ISpeakVA.DeviceDesc="ISpeak Virtual Audio"
+
+
+ISVA.Wave.szPname="ISpeak Virtual Audio"
+ISVA.Topo.szPname="ISpeak Virtual Audio"
+
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_AUDIO="{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_RENDER="{65E8773E-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+
+KSNAME_Wave="Wave"
+KSNAME_Topology="Topology"
+
+ISpeakVA.SvcDesc="ISpeak Virtual Audio"
+
+MediaCategories="SYSTEM\CurrentControlSet\Control\MediaCategories"
+
+Simple.NameGuid="{853157B5-909D-425c-9153-37325753FFC8}"
+Simple.Name="ISpeak Virtual Audio"
+
+
